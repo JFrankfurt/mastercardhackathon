@@ -9,26 +9,11 @@ var Simplify = require('simplify-commerce'),
         publicKey: 'sbpb_MTI2YmUwOTYtNDBjZi00ZTUxLTgxYzctMTIxZGEwMjc5OTEx',
         privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
     });
-/*
-function GovCoupon () {
-    var localDiscountRate = 5,
-        subsidy = 0,
-        newBill = 0;
-    client.coupon.create({
-        startDate: new Date() - 100,
-        description: "Local customer subsidy",
-        maxRedemptions: new Date() + 1,
-        couponCode: "local",
-        endDate: new Date() + 100,
-        percentOff: localDiscountRate
-    }, function (errData, data) {
-        if(errData){
-            console.error("Error Message: " + errData.data.error.message);
-            // handle the error
-            return;
-    } console.log("Success Response: " + JSON.stringify(data));
-});
-*/
+
+var vendorZip = 0,
+    localDiscountRate = 0.05,
+    subsidy = 0,
+    newBill = 0;
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -38,13 +23,13 @@ app.get('/', function (req, res){
     res.render('public/index.html');
 });
 
-app.post('/vendorinfo/:zip', function (req, res) {
-    vendorzip = req.params.zip;
+app.post('/vendorinfo/:zip', function (req, res, next) {
+    vendorZip = req.params.zip;
+    next();
 });
 
 app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res, next) {
     if (true){
-        var localDiscountRate = 0.05;
         subsidy = req.params.amount * localDiscountRate;
         newBill = req.params.amount - subsidy;
 
@@ -70,12 +55,12 @@ app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:cur
             amount: subsidy,
             desciption: "Payment from gov't to business for local discount.",
             card: {
-                expMonth: req.params.expMonth,
-                expYear: req.params.expYear,
-                cvc: req.params.cvc,
-                number: req.params.number
+                expMonth: "11",
+                expYear: "19",
+                cvc: "123",
+                number: "5555555555554444"
             },
-            currency: req.params.currency
+            currency: "USD"
         }, function (errData, data) {
             if (errData) {
                 console.error("Error message: " + errData.data.error.message);
