@@ -6,14 +6,15 @@ $(function (){
   var $cvc = $('#cc-cvc');
   var $expMonth = $('#cc-exp-month');
   var $expYear = $('#cc-exp-year');
+  var $amount = $('#cc-amount-of-payment');
 
   
   $('#process-payment-btn').on('click', funtion() {
     var info = {
-      cc-number: $cc-number.val(),
-      cc-cvc: $cc-cvc.val(),
-      cc-exp-month: $cc-exp-month.val(),
-      cc-exp-year: $cc-exp-year.val(),
+      number: $cc-number.val(),
+      cvc: $cc-cvc.val(),
+      expMonth: $cc-exp-month.val(),
+      expYear: $cc-exp-year.val(),
       };
       
     $.ajax({
