@@ -19,7 +19,7 @@ $(function (){
       
     $.ajax({
       type: 'POST',
-      url: 'https://serene-inlet-7047.herokuapp.com/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency',
+      url: 'https://localeconomics.herokuapp.com/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency',
       data: info,
       });
   });
