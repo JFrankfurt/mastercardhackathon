@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JFrankfurt/mastercardhackathon#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "simplify-commerce": "^1.2.0"
   }
 }

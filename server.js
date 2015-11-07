@@ -4,12 +4,38 @@
 var express = require('express'),
     app = express();
 
+var Simplify = require('simplify-commerce'),
+    client = Simplify.getClient({
+        publicKey: 'sbpb_MTI2YmUwOTYtNDBjZi00ZTUxLTgxYzctMTIxZGEwMjc5OTEx',
+        privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
+    });
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res){
     res.render('public/index.html');
+});
+
+app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res) {
+    client.payment.create({
+        amount: req.params.amount,
+        desciption: req.params.description,
+        card: {
+            expMonth: req.params.expMonth,
+            expYear: req.params.expYear,
+            cvc: req.params.cvc,
+            number: req.params.number
+        },
+        currency: req.params.currency
+    }, function (errData, data) {
+        if (errData) {
+            console.error("Error message: " + errData.data.error.message);
+            return;
+        }
+        console.log("Payment status: " + data.paymentStatus);
+    });
 });
 
 app.listen(app.get('port'), function () {
