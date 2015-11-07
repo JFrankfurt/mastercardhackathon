@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JFrankfurt/mastercardhackathon/issues"
   },
-  "homepage": "https://github.com/JFrankfurt/mastercardhackathon#readme"
+  "homepage": "https://github.com/JFrankfurt/mastercardhackathon#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
