@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 $(function (){
   
   var $cc-number = $('#cc-number');
@@ -5,4 +7,4 @@ $(function (){
   var $cc-exp-month = $('#cc-exp-month');
   var $cc-exp-year = $('#cc-exp-year');
   
-)
+});
