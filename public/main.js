@@ -10,6 +10,7 @@ $(function (){
 
   
   $('#process-payment-btn').on('click', funtion() {
+    
     var info = {
       number: $cc-number.val(),
       cvc: $cc-cvc.val(),
