@@ -6,13 +6,20 @@
     <script src="main.js"></script>
     <title>Local Economy Stimulus</title>
     <link rel="stylesheet" type="text/css" href="localeconomy.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <style type="text/css">
         body {
                 
         }
+        .searchone {
+            padding: .2em;
+        }
         #payment {
             float: right;
-            width: 25%;
+            width: 20%;
+        }
+        #container {
+            width: 70%;
         }
         #card-information {
             float: right;
@@ -48,14 +55,13 @@
     </style>
 </head>
 
-<body>
-    <div class="container">
+<body class="row">
+    <div class="col-md-9">
         <form class="searchbox">
-            <input type="search" placeholder="Search Restaurant" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
+            <input type="search" placeholder="Search Restaurant" name="search" class="searchone" onkeyup="buttonUp();" required>
+            <input type="search" placeholder="Customer Postal Code" name="search" class="searchone" onkeyup="buttonUp();" required>
             <input type="submit" class="searchbox-submit" value="GO">
-            <span class="searchbox-icon">GO</span>
         </form>
-    </div>
         <script type="text/javascript">
             function(){
                     var submitIcon = $('.searchbox-icon');
@@ -97,59 +103,67 @@
                         }
                     }
         </script>
-
-
-
-<div id="payment">
-
-    <div id="seamless">
-        <p>some text</p>
+        <div class="zip-codes">
     </div>
 
-    <form id="card-information" action="" method="POST">
+    <div class="col-md-3">
+    <div id="payment">
 
-        <div>
-            <label>Credit Card Number: </label>
-            <input id="cc-number" type="text" maxlength="20" autocomplete="off" value="" autofocus />
+        <div id="seamless">
+            <p>some text</p>
         </div>
-        <div>
-            <label>CVC: </label>
-            <input id="cc-cvc" type="text" maxlength="4" autocomplete="off" value=""/>
-        </div>
-        <div>
-            <label>Expiration Date: </label>
-            <select id="cc-exp-month">
-                <option value="01">Jan</option>
-                <option value="02">Feb</option>
-                <option value="03">Mar</option>
-                <option value="04">Apr</option>
-                <option value="05">May</option>
-                <option value="06">Jun</option>
-                <option value="07">Jul</option>
-                <option value="08">Aug</option>
-                <option value="09">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-            </select>
-            <select id="cc-exp-year">
-                <option value="15">2015</option>
-                <option value="16">2016</option>
-                <option value="17">2017</option>
-                <option value="18">2018</option>
-                <option value="19">2019</option>
-                <option value="20">2020</option>
-                <option value="21">2021</option>
-                <option value="22">2022</option>
-            </select>
-        </div>
-        <div>
-            <label>Amount of Payment: </label>
-            <input id="cc-amountofpayment" type="text" autocomplete="off" value=""/>
-        </div>
-        <button id="process-payment-btn" type="submit" style="margin: 20px 0px 0px 0px;">Process Payment</button>
-    </form>
-</div>
+
+        <form id="card-information" action="" method="POST">
+
+            <div>
+                <label>Credit Card Number: </label>
+                <input id="cc-number" type="text" maxlength="20" autocomplete="off" value="" autofocus />
+            </div>
+            <div>
+                <label>CVC: </label>
+                <input id="cc-cvc" type="text" maxlength="4" autocomplete="off" value=""/>
+            </div>
+            <div>
+                <label>Expiration Date: </label>
+                <select id="cc-exp-month">
+                    <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+                <select id="cc-exp-year">
+                    <option value="15">2015</option>
+                    <option value="16">2016</option>
+                    <option value="17">2017</option>
+                    <option value="18">2018</option>
+                    <option value="19">2019</option>
+                    <option value="20">2020</option>
+                    <option value="21">2021</option>
+                    <option value="22">2022</option>
+                </select>
+            </div>
+            <div>
+                <label>Amount of Payment: </label>
+                <input id="cc-amountofpayment" type="text" autocomplete="off" value=""/>
+            </div>
+            <button id="process-payment-btn" type="submit" style="margin: 20px 0px 0px 0px;">Process Payment</button>
+        </form>
+    </div>
+<script type="text/javascript">
+    function() {
+    var $Restaurant = ('#payment');
+
+    $()
+    }
+</script>
 
 </body>
 </html>
