@@ -1,6 +1,4 @@
-$(document).ready(function(){)
-
-$(function (){
+$(document).ready(function(){
   
   var $number = $('#cc-number');
   var $cvc = $('#cc-cvc');
@@ -8,7 +6,6 @@ $(function (){
   var $expYear = $('#cc-exp-year');
   var $amount = $('#cc-amount-of-payment');
 
-  
   $('#process-payment-btn').on('click', function() {
     
     var info = {
@@ -22,7 +19,6 @@ $(function (){
       type: 'POST',
       url: 'https://localeconomics.herokuapp.com/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency',
       data: info,
-      });
     });
-  
+  });
 });
