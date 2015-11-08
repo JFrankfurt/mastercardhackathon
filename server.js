@@ -11,8 +11,9 @@ var Simplify = require('simplify-commerce'),
     });
 
 var request = require('request'),
-    bodyParser = require('body-parser'),
-    parseUrlencoded = bodyParser.urlencoded({extended: false});
+    bodyParser = require('body-parser');
+
+var parseUrlencoded = bodyParser.urlencoded({extended: false});
 
 var placesURI = "http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?";
 
