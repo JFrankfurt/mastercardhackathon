@@ -15,28 +15,19 @@ var request = require('request'),
 
 var placesURI = "http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?";
 
-var placeURI = 'http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?'
-
 var vendorZip = 0,
     local = false,
     localDiscountRate = 0.1,
     subsidy = 0,
     newBill = 0;
 
-function findPlaces (clientPostalCode, name) {
-    params = {
-        PostalCode: clientPostalCode,
-        MCCCode: '5814',
-        Format: JSON,
-        MerchName: name
-    };
+
     t = queryString.stringify(params);
     f = placesURI + t;
 
     request.get(f).on('response', function (res) {
         res.json(res.body);
     });
-}
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -46,8 +37,18 @@ app.get('/', function (req, res){
     res.render('public/index.html');
 });
 
-app.post('/merchants/:PostalCode/:MerchName', function(req, res, next){
-    findPlaces(req.params.PostalCode, req.params.MerchName);
+app.post('/search/:PostalCode/:MerchName', function(req, res, next){
+    var params = {
+        PostalCode: req.params.PostalCode,
+        MCCCode: '5814',
+        MerchName: req.params.MerchName,
+        Format: JSON
+    };
+    qs = queryString.stringify(params);
+    final = placesURI + qs;
+    request(final).on('response', function(response){
+        res.json(response);
+    });
 });
 
 app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res, next) {
