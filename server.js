@@ -38,11 +38,11 @@ app.post('/search',parseUrlencoded, function(req, res, next){
         Format: 'JSON'
     };
 
-    qs = queryString.stringify(parms);
+    /*qs = queryString.stringify(parms);
     final = placesURI + qs;
     request(final).on('response', function(response){
         res.status(201).json(response);
-    });
+    });*/
 });
 
 app.post('/transaction', parseUrlencoded, function (req, res, next) {
