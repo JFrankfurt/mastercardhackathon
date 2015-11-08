@@ -7,6 +7,11 @@
     <title>Local Economy Stimulus</title>
     <link rel="stylesheet" type="text/css" href="localeconomy.css">
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="https://fb.me/react-0.14.2.js"></script>
+    <script src="https://fb.me/react-dom-0.14.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="myReact.js"></script>
     <style type="text/css">
         body {
                 
@@ -56,54 +61,7 @@
 
 <body class="row">
     <div class="col-md-9">
-        <form class="searchbox">
-            <input type="search" placeholder="Search Restaurant" name="search" class="searchone" onkeyup="buttonUp();" required>
-            <input type="search" placeholder="Customer Postal Code" name="search" class="searchone" onkeyup="buttonUp();" required>
-            <input type="submit" class="searchbox-submit" value="GO">
-        </form>
-        <script type="text/javascript">
-            function(){
-                    var submitIcon = $('.searchbox-icon');
-                    var inputBox = $('.searchbox-input');
-                    var searchBox = $('.searchbox');
-                    var isOpen = false;
-                    submitIcon.click(function(){
-                        if(isOpen == false){
-                            searchBox.addClass('searchbox-open');
-                            inputBox.focus();
-                            isOpen = true;
-                        } else {
-                            searchBox.removeClass('searchbox-open');
-                            inputBox.focusout();
-                            isOpen = false;
-                        }
-                    });  
-                     submitIcon.mouseup(function(){
-                            return false;
-                        });
-                    searchBox.mouseup(function(){
-                            return false;
-                        });
-                    $(document).mouseup(function(){
-                            if(isOpen == true){
-                                $('.searchbox-icon').css('display','block');
-                                submitIcon.click();
-                            }
-                        });
-                });
-                    function buttonUp(){
-                        var inputVal = $('.searchbox-input').val();
-                        inputVal = $.trim(inputVal).length;
-                        if( inputVal !== 0){
-                            $('.searchbox-icon').css('display','none');
-                        } else {
-                            $('.searchbox-input').val('');
-                            $('.searchbox-icon').css('display','block');
-                        }
-                    }
-        </script>
-    </div>
-        <div class="zip-codes">
+        <div id="searchContent"></div>
     </div>
 
     <div class="col-md-3">
