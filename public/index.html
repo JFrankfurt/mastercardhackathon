@@ -14,6 +14,16 @@
             float: right;
             width: 25%;
         }
+        #card-information {
+            float: right;
+            width: 100%;
+            height: 25%;
+            position: fixed;
+            bottom: 16em;
+        }
+        #card-information label {
+            margin-top: 6px;
+        }
         #seamless {
             box-sizing: border-box;
             display: block;
@@ -47,10 +57,7 @@
     </div>
 
     <form id="card-information" action="" method="POST">
-        <div>
-            <label>Customer Zip Code: </label>
-            <input id="cc-customer-zip-code" type="text" autocomplete="off" value=""/>
-        </div>
+
         <div>
             <label>Credit Card Number: </label>
             <input id="cc-number" type="text" maxlength="20" autocomplete="off" value="" autofocus />
@@ -90,7 +97,7 @@
             <label>Amount of Payment: </label>
             <input id="cc-amountofpayment" type="text" autocomplete="off" value=""/>
         </div>
-        <button id="process-payment-btn" type="submit" style="padding: 5px 10px">Process Payment</button>
+        <button id="process-payment-btn" type="submit" style="margin: 20px 0px 0px 0px;">Process Payment</button>
     </form>
 </div>
 
