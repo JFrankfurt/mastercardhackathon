@@ -9,7 +9,7 @@ $(function (){
   var $amount = $('#cc-amount-of-payment');
 
   
-  $('#process-payment-btn').on('click', funtion() {
+  $('#process-payment-btn').on('click', function() {
     
     var info = {
       number: $cc-number.val(),
