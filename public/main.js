@@ -9,6 +9,7 @@ $(document).ready(function(){
   $('#process-payment-btn').on('click', function() {
     
     var info = {
+      amount: $amount-of-payment.val(),
       number: $cc-number.val(),
       cvc: $cc-cvc.val(),
       expMonth: $cc-exp-month.val(),
