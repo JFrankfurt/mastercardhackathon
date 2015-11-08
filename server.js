@@ -7,7 +7,7 @@ var express = require('express'),
 var Simplify = require('simplify-commerce'),
     client = Simplify.getClient({
         publicKey: 'sbpb_MTI2YmUwOTYtNDBjZi00ZTUxLTgxYzctMTIxZGEwMjc5OTEx',
-        privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
+        privateKey: process.env.PRIVKEY
     });
 
 var request = require('request'),
