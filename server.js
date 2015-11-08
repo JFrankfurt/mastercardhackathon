@@ -23,18 +23,18 @@ var vendorZip = 0,
     subsidy = 0,
     newBill = 0;
 
-function findPlaces (clientPostalCode) {
+function findPlaces (clientPostalCode, name) {
     params = {
         PostalCode: clientPostalCode,
-        MCCCode: mcc,
-        Format: JSON
+        MCCCode: '5814',
+        Format: JSON,
+        MerchName: name
     };
     t = queryString.stringify(params);
     f = placesURI + t;
 
     request.get(f).on('response', function (res) {
-        console.log(res.statusCode);
-        console.log(res.body);
+        res.json(res.body);
     });
 }
 
@@ -44,6 +44,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res){
     res.render('public/index.html');
+});
+
+app.post('/merchants/:PostalCode/:MerchName', function(req, res, next){
+    findPlaces(req.params.PostalCode, req.params.MerchName);
 });
 
 app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res, next) {
