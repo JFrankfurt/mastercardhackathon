@@ -21,14 +21,6 @@ var vendorZip = 0,
     subsidy = 0,
     newBill = 0;
 
-
-    t = queryString.stringify(params);
-    f = placesURI + t;
-
-    request.get(f).on('response', function (res) {
-        res.json(res.body);
-    });
-
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
