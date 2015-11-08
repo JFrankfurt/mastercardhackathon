@@ -10,8 +10,11 @@ var Simplify = require('simplify-commerce'),
         privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
     });
 
+//var request = require('request');
+
 var vendorZip = 0,
-    localDiscountRate = 0.05,
+    local = false,
+    localDiscountRate = 0.1,
     subsidy = 0,
     newBill = 0;
 
@@ -29,7 +32,7 @@ app.post('/vendorinfo/:zip', function (req, res, next) {
 });
 
 app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res, next) {
-    if (true){
+    if (local){
         subsidy = req.params.amount * localDiscountRate;
         newBill = req.params.amount - subsidy;
 
@@ -68,7 +71,6 @@ app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:cur
             }
             console.log("Payment status: " + data.paymentStatus);
         });
-        //some stuff
         next();
     } else {
         client.payment.create({
