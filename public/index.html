@@ -9,6 +9,10 @@
 <!--The Below Retrieves Credit Card Information-->
 <form id="card-information" action="" method="POST">
     <div>
+        <label>Customer Zip Code: </label>
+        <input id="cc-customer-zip-code" type="text" autocomplete="off" value=""/>
+    </div>
+    <div>
         <label>Credit Card Number: </label>
         <input id="cc-number" type="text" maxlength="20" autocomplete="off" value="" autofocus />
     </div>
@@ -45,7 +49,7 @@
     </div>
     <div>
         <label>Amount of Payment: </label>
-        <input id="cc-amount-of-payment" type="text" autocomplete="off" value=""/>
+        <input id="cc-amountofpayment" type="text" autocomplete="off" value=""/>
     </div>
     <button id="process-payment-btn" type="submit">Process Payment</button>
     

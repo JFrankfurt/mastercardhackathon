@@ -1,26 +1,25 @@
 $(document).ready(function(){
-
-$(function (){
   
   var $number = $('#cc-number');
   var $cvc = $('#cc-cvc');
   var $expMonth = $('#cc-exp-month');
   var $expYear = $('#cc-exp-year');
+  var $amount = $('#cc-amount-of-payment');
 
-  
-  $('#process-payment-btn').on('click', funtion() {
+  $('#process-payment-btn').on('click', function() {
+    
     var info = {
-      cc-number: $cc-number.val(),
-      cc-cvc: $cc-cvc.val(),
-      cc-exp-month: $cc-exp-month.val(),
-      cc-exp-year: $cc-exp-year.val(),
+      amount: $amountofpayment.val(),
+      number: $cc-number.val(),
+      cvc: $cc-cvc.val(),
+      expMonth: $cc-exp-month.val(),
+      expYear: $cc-exp-year.val(),
       };
       
     $.ajax({
       type: 'POST',
-      url: 'https://serene-inlet-7047.herokuapp.com/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency',
+      url: 'https://localeconomics.herokuapp.com/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency',
       data: info,
-      });
+    });
   });
-  
 });
