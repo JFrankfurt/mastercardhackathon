@@ -11,7 +11,8 @@ var Simplify = require('simplify-commerce'),
     });
 
 var request = require('request'),
-    queryString = require('querystring');
+    bodyParser = require('body-parser'),
+    parseUrlencoded = bodyParser.urlencoded({extended: false});
 
 var placesURI = "http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?";
 
@@ -29,17 +30,18 @@ app.get('/', function (req, res){
     res.render('public/index.html');
 });
 
-app.post('/search/:PostalCode/:MerchName', function(req, res, next){
+app.post('/search',parseUrlencoded, function(req, res, next){
     var parms = {
-        PostalCode: req.params.PostalCode,
+        PostalCode: req.body.PostalCode,
         MCCCode: '5814',
-        MerchName: req.params.MerchName,
+        MerchName: req.body.MerchName,
         Format: 'JSON'
     };
+
     qs = queryString.stringify(parms);
     final = placesURI + qs;
     request(final).on('response', function(response){
-        res.json(response);
+        res.status(201).json(response);
     });
 });
 
