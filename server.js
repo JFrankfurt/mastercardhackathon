@@ -30,13 +30,13 @@ app.get('/', function (req, res){
 });
 
 app.post('/search/:PostalCode/:MerchName', function(req, res, next){
-    var params = {
+    var parms = {
         PostalCode: req.params.PostalCode,
         MCCCode: '5814',
         MerchName: req.params.MerchName,
-        Format: JSON
+        Format: 'JSON'
     };
-    qs = queryString.stringify(params);
+    qs = queryString.stringify(parms);
     final = placesURI + qs;
     request(final).on('response', function(response){
         res.json(response);
