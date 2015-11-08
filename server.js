@@ -33,8 +33,8 @@ app.get('/', function (req, res){
 app.post('/search',parseUrlencoded, function(req, res, next){
     var parms = {
         PostalCode: req.body.PostalCode,
-        MCCCode: '5814',
         MerchName: req.body.MerchName,
+        MCCCode: '5814',
         Format: 'JSON'
     };
 
@@ -45,67 +45,46 @@ app.post('/search',parseUrlencoded, function(req, res, next){
     });
 });
 
-app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:currency', function (req, res, next) {
-    if (local){
-        subsidy = req.params.amount * localDiscountRate;
-        newBill = req.params.amount - subsidy;
+app.post('/transaction', parseUrlencoded, function (req, res, next) {
+    subsidy = req.params.amount * localDiscountRate;
+    newBill = req.params.amount - subsidy;
 
-        client.payment.create({
-            amount: newBill,
-            desciption: "New bill to customer with local discount",
-            card: {
-                expMonth: req.params.expMonth,
-                expYear: req.params.expYear,
-                cvc: req.params.cvc,
-                number: req.params.number
-            },
-            currency: "USD"
-        }, function (errData, data) {
-            if (errData) {
-                console.error("Error message: " + errData.data.error.message);
-                return;
-            }
-            console.log("Payment status: " + data.paymentStatus);
-        });
+    client.payment.create({
+        amount: newBill,
+        desciption: "New bill to customer with local discount",
+        card: {
+            expMonth: req.params.expMonth,
+            expYear: req.params.expYear,
+            cvc: req.params.cvc,
+            number: req.params.number
+        },
+        currency: "USD"
+    }, function (errData, data) {
+        if (errData) {
+            console.error("Error message: " + errData.data.error.message);
+            return;
+        }
+        console.log("Payment status: " + data.paymentStatus);
+    });
 
-        client.payment.create({
-            amount: subsidy,
-            desciption: "Payment from gov't to business for local discount.",
-            card: {
-                expMonth: "11",
-                expYear: "19",
-                cvc: "123",
-                number: "5555555555554444"
-            },
-            currency: "USD"
-        }, function (errData, data) {
-            if (errData) {
-                console.error("Error message: " + errData.data.error.message);
-                return;
-            }
-            console.log("Payment status: " + data.paymentStatus);
-        });
-        next();
-    } else {
-        client.payment.create({
-            amount: req.params.amount,
-            desciption: req.params.description,
-            card: {
-                expMonth: req.params.expMonth,
-                expYear: req.params.expYear,
-                cvc: req.params.cvc,
-                number: req.params.number
-            },
-            currency: "USD"
-        }, function (errData, data) {
-            if (errData) {
-                console.error("Error message: " + errData.data.error.message);
-                return;
-            }
-            console.log("Payment status: " + data.paymentStatus);
-        });
-        next();
-    }
+    client.payment.create({
+        amount: subsidy,
+        desciption: "Payment from gov't to business for local discount.",
+        card: {
+            expMonth: "11",
+            expYear: "19",
+            cvc: "123",
+            number: "5555555555554444"
+        },
+        currency: "USD"
+    }, function (errData, data) {
+        if (errData) {
+            console.error("Error message: " + errData.data.error.message);
+            return;
+        }
+        console.log("Payment status: " + data.paymentStatus);
+    });
+    next();
 });
 
 app.listen(app.get('port'), function () {
