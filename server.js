@@ -7,7 +7,7 @@ var express = require('express'),
 var Simplify = require('simplify-commerce'),
     client = Simplify.getClient({
         publicKey: 'sbpb_MTI2YmUwOTYtNDBjZi00ZTUxLTgxYzctMTIxZGEwMjc5OTEx',
-        privateKey: process.env.PRIVKEY
+        privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
     });
 
 var request = require('request'),
@@ -44,7 +44,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res){
     res.render('public/index.html');
-    console.log(process.env.PRIVKEY);
 });
 
 app.post('/vendorinfo/:zip', function (req, res, next) {
