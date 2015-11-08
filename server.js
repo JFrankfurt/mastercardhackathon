@@ -33,8 +33,8 @@ app.get('/', function (req, res){
 
 app.post('/search',parseUrlencoded, function(req, res, next){
     var parms = {
-        PostalCode: req.body.PostalCode,
-        MerchName: req.body.MerchName,
+        postalCode: req.body.postalCode,
+        merchName: req.body.merchName,
         MCCCode: '5814',
         Format: 'JSON'
     };
