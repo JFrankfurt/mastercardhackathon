@@ -10,7 +10,19 @@ var Simplify = require('simplify-commerce'),
         privateKey: 'wveDFv/Gi8MbNvlQozacvBShSLFw+TD+joMdJh2+hUd5YFFQL0ODSXAOkNtXTToq'
     });
 
-//var request = require('request');
+var request = require('request'),
+    queryString = require('querystring');
+
+function findPlaces (clientPostalCode, mcc) {
+    params = {
+        PostalCode: clientPostalCode,
+        MCCCode: mcc,
+        Format: JSON
+    }
+    queryString.stringify(params)
+}
+
+var placeURI = 'http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?'
 
 var vendorZip = 0,
     local = false,
@@ -45,7 +57,7 @@ app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:cur
                 cvc: req.params.cvc,
                 number: req.params.number
             },
-            currency: req.params.currency
+            currency: "USD"
         }, function (errData, data) {
             if (errData) {
                 console.error("Error message: " + errData.data.error.message);
@@ -82,7 +94,7 @@ app.post('/transaction/:amount/:description/:expMonth/:expYear/:cvc/:number/:cur
                 cvc: req.params.cvc,
                 number: req.params.number
             },
-            currency: req.params.currency
+            currency: "USD"
         }, function (errData, data) {
             if (errData) {
                 console.error("Error message: " + errData.data.error.message);
