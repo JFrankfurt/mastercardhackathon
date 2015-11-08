@@ -13,13 +13,21 @@ var Simplify = require('simplify-commerce'),
 var request = require('request'),
     queryString = require('querystring');
 
+var placesURI = "http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?";
+
 function findPlaces (clientPostalCode, mcc) {
     params = {
         PostalCode: clientPostalCode,
         MCCCode: mcc,
         Format: JSON
-    }
-    queryString.stringify(params)
+    };
+    t = queryString.stringify(params);
+    f = placesURI + t;
+
+    request.get(f).on('response', function (res) {
+        console.log(res.statusCode);
+        console.log(res.body);
+    });
 }
 
 var placeURI = 'http://dmartin.org:8026/merchantpoi/v1/merchantpoisvc.svc/merchantpoi?'
@@ -36,6 +44,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res){
     res.render('public/index.html');
+    console.log(process.env.PRIVKEY);
 });
 
 app.post('/vendorinfo/:zip', function (req, res, next) {
