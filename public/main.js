@@ -5,6 +5,7 @@ $(document).ready(function(){
   var $expMonth = $('#cc-exp-month');
   var $expYear = $('#cc-exp-year');
   var $amount = $('#cc-amount-of-payment');
+  var $yourzip = $('#')
 
   $('#process-payment-btn').on('click', function() {
     
